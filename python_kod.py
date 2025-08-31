@@ -10,7 +10,6 @@ def get_carousel_data():
     tabulka = [[None for column in range(len(kategorie))] for row in range(10)]
     buffer = []
     rebuffer = []
-    test = []
     film_to_col = {}  # slovník pro uložení filmu a jeho kategorií
     while_counter = 0  # pro cyklus while, aby se necyklil do nekonečna
 
