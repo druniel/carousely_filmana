@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmové kategorie</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 6px 12px;
+            text-align: center;
+        }
+        th:first-child, td:first-child {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filmové kategorie</h1>
+    <table id="filmTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Obsah zdarma</th>
+                <th>Náš výběr</th>
+                <th>Křesťanské filmy</th>
+                <th>Drama</th>
+                <th>Originální produkce</th>
+                <th>Biblické filmy</th>
+                <th>Pro děti</th>
+                <th>Životopisné filmy</th>
+                <th>Rodinné filmy</th>
+                <th>České a slovenské filmy</th>
+                <th>Náš výběr z internetu</th>
+                <th>Filmy s dabingem</th>
+                <th>Filmy k zamyšlení/kontroverzní</th>
+                <th>Dokumenty</th>
+                <th>Seriály</th>
+                <th>Filmy na základě skutečnosti</th>
+                <th>Krátké filmy</th>
+                <th>Plné velikosti</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 10 řádků pro filmy -->
+            <tr><td>Film 1</td></tr>
+            <tr><td>Film 2</td></tr>
+            <tr><td>Film 3</td></tr>
+            <tr><td>Film 4</td></tr>
+            <tr><td>Film 5</td></tr>
+            <tr><td>Film 6</td></tr>
+            <tr><td>Film 7</td></tr>
+            <tr><td>Film 8</td></tr>
+            <tr><td>Film 9</td></tr>
+            <tr><td>Film 10</td></tr>
+        </tbody>
+    </table>
+    <br>
+    <button onclick="fetchData()">Vytvoř carousely</button>
+
+    <script>
+        async function fetchData() {
+            const response = await fetch('/spustit');
+            const data = await response.json(); // dostaneš pole 10×N
+    
+            const table = document.getElementById('filmTable');
+            const tbody = table.querySelector('tbody');
+            tbody.innerHTML = '';
+    
+            data.forEach((radek, index) => {
+                const tr = document.createElement('tr');
+                
+                const tdTitle = document.createElement('td');
+                tdTitle.textContent = `Film ${index + 1}`;
+                tr.appendChild(tdTitle);
+    
+                radek.forEach(film => {
+                    const td = document.createElement('td');
+                    td.textContent = film || '';  // prázdné buňky nezobrazuj
+                    tr.appendChild(td);
+                });
+    
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
