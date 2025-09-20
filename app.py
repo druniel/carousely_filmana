@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from python_kod import get_carousel_data
+from kod_funkce import get_carousel_data
 
 app = Flask(__name__)
 
